@@ -21,7 +21,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import kohii.v1.core.Manager
 import kohii.v1.core.Manager.OnSelectionListener
 import kohii.v1.core.Playback
@@ -65,7 +65,7 @@ class DevScrollViewFragment : BaseFragment(), OnSelectionListener {
         override fun kohiiCanPause(): Boolean = true
 
         override fun setupRenderer(playback: Playback, renderer: Any?) {
-          if (renderer is PlayerView) {
+          if (renderer is StyledPlayerView) {
             // TODO: replace with custom ForwardingPlayer.
             // val controller = kohii.createControlDispatcher(playback)
             // renderer.setControlDispatcher(controller)
@@ -75,7 +75,7 @@ class DevScrollViewFragment : BaseFragment(), OnSelectionListener {
         }
 
         override fun teardownRenderer(playback: Playback, renderer: Any?) {
-          if (renderer is PlayerView) {
+          if (renderer is StyledPlayerView) {
             // TODO: replace with custom ForwardingPlayer.
             // val tag = renderer.tag
             // if (tag is ControlDispatcher) renderer.tag = null
@@ -93,7 +93,7 @@ class DevScrollViewFragment : BaseFragment(), OnSelectionListener {
         override fun kohiiCanPause(): Boolean = true
 
         override fun setupRenderer(playback: Playback, renderer: Any?) {
-          if (renderer is PlayerView) {
+          if (renderer is StyledPlayerView) {
             // TODO: replace with custom ForwardingPlayer.
             // val controller = kohii.createControlDispatcher(playback)
             // renderer.setControlDispatcher(controller)
@@ -103,7 +103,7 @@ class DevScrollViewFragment : BaseFragment(), OnSelectionListener {
         }
 
         override fun teardownRenderer(playback: Playback, renderer: Any?) {
-          if (renderer is PlayerView) {
+          if (renderer is StyledPlayerView) {
             // TODO: replace with custom ForwardingPlayer.
             // val tag = renderer.tag
             // if (tag is ControlDispatcher) renderer.tag = null
@@ -120,7 +120,7 @@ class DevScrollViewFragment : BaseFragment(), OnSelectionListener {
       binding.controlView.showTimeoutMs = -1 // non-positive so it will never hide
       binding.controlView.show()
       val container = playback.container
-      if (container is PlayerView) {
+      if (container is StyledPlayerView) {
         container.useController = false // if you want to only use the global controller.
         binding.controlView.player = container.player
         // TODO: replace with custom ForwardingPlayer.

@@ -20,7 +20,7 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import kohii.v1.core.Common
 import kohii.v1.core.Engine
 import kohii.v1.core.Manager
@@ -35,9 +35,9 @@ import kohii.v1.utils.Capsule
 
 open class Kohii constructor(
   master: Master,
-  playableCreator: PlayableCreator<PlayerView> = PlayerViewPlayableCreator(master),
+  playableCreator: PlayableCreator<StyledPlayerView> = PlayerViewPlayableCreator(master),
   private val rendererProviderFactory: RendererProviderFactory = ::PlayerViewProvider
-) : Engine<PlayerView>(master, playableCreator) {
+) : Engine<StyledPlayerView>(master, playableCreator) {
 
   private constructor(context: Context) : this(Master[context])
 
@@ -53,7 +53,7 @@ open class Kohii constructor(
   }
 
   override fun prepare(manager: Manager) {
-    manager.registerRendererProvider(PlayerView::class.java, rendererProviderFactory())
+    manager.registerRendererProvider(StyledPlayerView::class.java, rendererProviderFactory())
   }
 
   /**
@@ -74,12 +74,12 @@ open class Kohii constructor(
 
     private val master = Master[context.applicationContext]
 
-    private var playableCreator: PlayableCreator<PlayerView> =
+    private var playableCreator: PlayableCreator<StyledPlayerView> =
       PlayerViewPlayableCreator(master)
 
     private var rendererProviderFactory: RendererProviderFactory = { PlayerViewProvider() }
 
-    fun setPlayableCreator(playableCreator: PlayableCreator<PlayerView>): Builder = apply {
+    fun setPlayableCreator(playableCreator: PlayableCreator<StyledPlayerView>): Builder = apply {
       this.playableCreator = playableCreator
     }
 

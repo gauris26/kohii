@@ -31,7 +31,7 @@ import com.google.android.exoplayer2.source.ads.AdsLoader
 import com.google.android.exoplayer2.ui.AdOverlayInfo
 import com.google.android.exoplayer2.ui.AdOverlayInfo.Purpose
 import com.google.android.exoplayer2.ui.AdViewProvider
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import kohii.v1.ads.AdMedia
 import kohii.v1.core.PlayerPool
 import kohii.v1.exoplayer.PlayerViewBridge
@@ -61,7 +61,7 @@ class PlayerViewImaBridge(
   private val adViewGroup: ViewGroup = FrameLayout(context.applicationContext)
   private val adsLoader: ImaAdsLoader = imaBridgeConfig.adsLoader
 
-  override var renderer: PlayerView?
+  override var renderer: StyledPlayerView?
     get() = super.renderer
     set(value) {
       super.renderer?.let { current ->

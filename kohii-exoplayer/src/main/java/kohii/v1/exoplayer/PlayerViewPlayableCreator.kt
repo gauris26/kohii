@@ -17,7 +17,7 @@
 package kohii.v1.exoplayer
 
 import android.content.Context
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import kohii.v1.core.BridgeCreator
 import kohii.v1.core.Common
 import kohii.v1.core.Master
@@ -27,12 +27,12 @@ import kohii.v1.core.PlayableCreator
 import kohii.v1.media.Media
 import kotlin.LazyThreadSafetyMode.NONE
 
-typealias PlayerViewBridgeCreatorFactory = (Context) -> BridgeCreator<PlayerView>
+typealias PlayerViewBridgeCreatorFactory = (Context) -> BridgeCreator<StyledPlayerView>
 
 class PlayerViewPlayableCreator internal constructor(
   private val master: Master,
   private val bridgeCreatorFactory: PlayerViewBridgeCreatorFactory = defaultBridgeCreatorFactory
-) : PlayableCreator<PlayerView>(PlayerView::class.java) {
+) : PlayableCreator<StyledPlayerView>(StyledPlayerView::class.java) {
 
   constructor(context: Context) : this(Master[context.applicationContext])
 
@@ -49,7 +49,7 @@ class PlayerViewPlayableCreator internal constructor(
     }
   }
 
-  private val bridgeCreator: Lazy<BridgeCreator<PlayerView>> = lazy(NONE) {
+  private val bridgeCreator: Lazy<BridgeCreator<StyledPlayerView>> = lazy(NONE) {
     bridgeCreatorFactory(master.app)
   }
 
@@ -79,7 +79,7 @@ class PlayerViewPlayableCreator internal constructor(
       this.bridgeCreatorFactory = factory
     }
 
-    fun build(): PlayableCreator<PlayerView> = PlayerViewPlayableCreator(
+    fun build(): PlayableCreator<StyledPlayerView> = PlayerViewPlayableCreator(
         Master[app],
         bridgeCreatorFactory
     )

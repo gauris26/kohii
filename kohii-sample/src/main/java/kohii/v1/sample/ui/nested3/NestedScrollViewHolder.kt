@@ -21,7 +21,7 @@ import android.widget.TextView
 import androidx.core.text.parseAsHtml
 import androidx.core.widget.NestedScrollView
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import kohii.v1.core.Manager
 import kohii.v1.exoplayer.Kohii
 import kohii.v1.sample.DemoApp.Companion.assetVideoUri
@@ -45,7 +45,7 @@ internal class NestedScrollViewHolder(
   ) as NestedScrollView
   private val playerView = itemView.findViewById(
       id.playerView
-  ) as PlayerView
+  ) as StyledPlayerView
   private val libIntro = itemView.findViewById(
       id.libIntro
   ) as TextView

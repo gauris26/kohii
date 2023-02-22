@@ -31,7 +31,7 @@
       app:cardPreventCornerOverlap="true"
       >
 
-    <com.google.android.exoplayer2.ui.PlayerView
+    <com.google.android.exoplayer2.ui.StyledPlayerView
         android:id="@id/playerView"
         android:layout_width="192dp"
         android:layout_height="108dp"

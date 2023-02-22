@@ -23,7 +23,7 @@ import android.view.ViewGroup
 import androidx.core.view.doOnLayout
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import kohii.v1.core.Playback
 import kohii.v1.core.Prioritized
 import kohii.v1.exoplayer.Kohii
@@ -90,7 +90,7 @@ class PageFragment : BaseFragment(), Prioritized {
         pageTagKey
     )
     val videoTag = "PAGE::$pagePos::${video.file}"
-    val playerView: PlayerView = view.findViewById(R.id.playerView)
+    val playerView: StyledPlayerView = view.findViewById(R.id.playerView)
     kohii.setUp(video.file) {
       tag = videoTag
       delay = 500

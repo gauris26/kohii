@@ -25,7 +25,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import kohii.v1.core.Playback
 import kohii.v1.core.Playback.Controller
 import kohii.v1.core.Rebinder
@@ -123,7 +123,7 @@ class LandscapeFullscreenFragment : BaseFragment() {
         override fun kohiiCanPause(): Boolean = true
 
         override fun setupRenderer(playback: Playback, renderer: Any?) {
-          if (renderer is PlayerView) {
+          if (renderer is StyledPlayerView) {
             // TODO: replace with custom ForwardingPlayer.
             // renderer.useController = true
             // renderer.setControlDispatcher(kohii.createControlDispatcher(playback))

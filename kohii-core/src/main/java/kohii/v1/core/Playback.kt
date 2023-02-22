@@ -116,6 +116,7 @@ abstract class Playback(
     val preload: Boolean = false,
     val releaseOnInActive: Boolean = false,
     val repeatMode: Int = Player.REPEAT_MODE_OFF,
+    val allowPlayOnNonVisibleViews: Boolean = false,
     val callbacks: Set<Callback> = emptySet(),
     val controller: Controller? = null,
     val initialPlaybackInfo: PlaybackInfo? = null,
@@ -236,7 +237,7 @@ abstract class Playback(
       return Token(config.threshold, -1F, tmpRect, container.width, container.height)
     }
 
-    if (!container.getGlobalVisibleRect(tmpRect)) {
+    if (!container.getGlobalVisibleRect(tmpRect) && config.allowPlayOnNonVisibleViews.not()) {
       return Token(config.threshold, -1F, tmpRect, container.width, container.height)
     }
 

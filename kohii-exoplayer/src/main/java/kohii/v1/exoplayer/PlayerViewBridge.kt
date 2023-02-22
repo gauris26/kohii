@@ -24,14 +24,13 @@ import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.PlaybackException
 import com.google.android.exoplayer2.PlaybackParameters
 import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.Tracks
 import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer.DecoderInitializationException
 import com.google.android.exoplayer2.mediacodec.MediaCodecUtil
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.MediaSourceFactory
-import com.google.android.exoplayer2.source.TrackGroupArray
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector.MappedTrackInfo.RENDERER_SUPPORT_UNSUPPORTED_TRACKS
-import com.google.android.exoplayer2.trackselection.TrackSelectionArray
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import kohii.v1.core.AbstractBridge
 import kohii.v1.core.DefaultTrackSelectorHolder
 import kohii.v1.core.PlayerParameters
@@ -55,7 +54,7 @@ open class PlayerViewBridge(
   protected val media: Media,
   protected val playerPool: PlayerPool<Player>,
   private val mediaSourceFactory: MediaSourceFactory
-) : AbstractBridge<PlayerView>(), Player.Listener {
+) : AbstractBridge<StyledPlayerView>(), Player.Listener {
 
   protected open val mediaItem: MediaItem = MediaItem.fromUri(media.uri)
 
@@ -69,7 +68,7 @@ open class PlayerViewBridge(
   private var _playbackParams = PlaybackParameters.DEFAULT // Backing field
   private var mediaSource: MediaSource? = null
 
-  private var lastSeenTrackGroupArray: TrackGroupArray? = null
+  private var lastSeenTrackGroupArray: List<Tracks.Group>? = null
   private var inErrorState = false
 
   protected var player: Player? = null
@@ -102,7 +101,7 @@ open class PlayerViewBridge(
     this.inErrorState = false
   }
 
-  override var renderer: PlayerView? = null
+  override var renderer: StyledPlayerView? = null
     set(value) {
       if (field === value) return // same reference
       "Bridge#renderer $field -> $value, $this".logInfo()
@@ -116,7 +115,7 @@ open class PlayerViewBridge(
         }
       } else {
         this.player?.also {
-          PlayerView.switchTargetView(it, field, value)
+          StyledPlayerView.switchTargetView(it, field, value)
         }
       }
 
@@ -365,13 +364,11 @@ open class PlayerViewBridge(
     }
   }
 
-  @Deprecated("Deprecated in Java")
   override fun onTracksChanged(
-    trackGroups: TrackGroupArray,
-    trackSelections: TrackSelectionArray
+    tracks: Tracks
   ) {
-    if (trackGroups == lastSeenTrackGroupArray) return
-    lastSeenTrackGroupArray = trackGroups
+    if (tracks.groups == lastSeenTrackGroupArray) return
+    lastSeenTrackGroupArray = tracks.groups
     val player = this.player as? KohiiExoPlayer ?: return
     val trackInfo = player.trackSelector.currentMappedTrackInfo
     if (trackInfo != null) {

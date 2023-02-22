@@ -20,7 +20,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import kohii.v1.core.Manager
 import kohii.v1.core.Playback
 import kohii.v1.core.Playback.Controller
@@ -62,7 +62,7 @@ internal class DummyAdapter(
         override fun kohiiCanPause(): Boolean = true
 
         override fun setupRenderer(playback: Playback, renderer: Any?) {
-          if (renderer is PlayerView) {
+          if (renderer is StyledPlayerView) {
             // TODO: replace with custom ForwardingPlayer.
             // renderer.useController = true
             // renderer.setControlDispatcher(kohii.createControlDispatcher(playback))

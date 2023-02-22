@@ -24,7 +24,7 @@ import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ext.ima.ImaAdsLoader
 import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
 import com.google.android.exoplayer2.source.MediaSourceFactory
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import kohii.v1.ads.exoplayer.PlayerViewImaBridgeCreator
 import kohii.v1.core.Common
 import kohii.v1.core.Engine
@@ -49,7 +49,7 @@ import kohii.v1.utils.Capsule
  */
 class Manilo(
   master: Master,
-  playableCreator: PlayableCreator<PlayerView> = PlayerViewPlayableCreator.Builder(master.app)
+  playableCreator: PlayableCreator<StyledPlayerView> = PlayerViewPlayableCreator.Builder(master.app)
       .setBridgeCreatorFactory(defaultBridgeCreatorFactory)
       .build(),
   rendererProviderFactory: RendererProviderFactory = ::PlayerViewProvider

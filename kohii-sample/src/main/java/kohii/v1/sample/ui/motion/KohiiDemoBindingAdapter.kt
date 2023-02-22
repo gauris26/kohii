@@ -20,7 +20,7 @@ import androidx.core.view.ViewCompat
 import androidx.databinding.BindingAdapter
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import kohii.v1.exoplayer.Kohii
 import kohii.v1.media.MediaItem
 import kohii.v1.sample.R
@@ -33,7 +33,7 @@ import kohii.v1.sample.R
 
 @BindingAdapter("video", "provider")
 fun setVideo(
-  view: PlayerView,
+  view: StyledPlayerView,
   video: Video,
   kohii: Kohii
 ) {

@@ -18,7 +18,7 @@ package kohii.v1.exoplayer
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import kohii.v1.core.Playback
 import kohii.v1.core.ViewRendererProvider
 import kohii.v1.media.Media
@@ -41,8 +41,8 @@ class PlayerViewProvider : ViewRendererProvider() {
   override fun createRenderer(
     playback: Playback,
     rendererType: Int
-  ): PlayerView {
+  ): StyledPlayerView {
     return LayoutInflater.from(playback.container.context)
-        .inflate(rendererType, playback.container, false) as PlayerView
+        .inflate(rendererType, playback.container, false) as StyledPlayerView
   }
 }

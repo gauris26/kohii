@@ -21,7 +21,7 @@ import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import kohii.v1.core.Playback
 import kohii.v1.core.Rebinder
 import kohii.v1.exoplayer.Kohii
@@ -43,7 +43,7 @@ class VideoViewHolder(
     itemView.setOnClickListener(this)
   }
 
-  val playerView = itemView.findViewById(R.id.playerView) as PlayerView
+  val playerView = itemView.findViewById(R.id.playerView) as StyledPlayerView
   val playerContainer = itemView.findViewById(R.id.playerContainer) as AspectRatioFrameLayout
   val transView = playerView.findViewById(R.id.exo_content_frame) as View
 

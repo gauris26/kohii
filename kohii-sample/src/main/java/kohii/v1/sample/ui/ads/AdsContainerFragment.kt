@@ -26,7 +26,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import kohii.v1.ads.AdMediaItem
 import kohii.v1.ads.Manilo
 import kohii.v1.core.controller
@@ -67,7 +67,7 @@ class AdsContainerFragment :
             tag = "$value"
             repeatMode = Player.REPEAT_MODE_ONE
             controller = controller { _, renderer ->
-              if (renderer is PlayerView) {
+              if (renderer is StyledPlayerView) {
                 renderer.useController = true
               }
             }

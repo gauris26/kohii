@@ -16,7 +16,7 @@
 
 package kohii.v1.exoplayer
 
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import kohii.v1.core.AbstractPlayable
 import kohii.v1.core.Bridge
 import kohii.v1.core.Master
@@ -27,20 +27,20 @@ class PlayerViewPlayable(
   master: Master,
   media: Media,
   config: Config,
-  bridge: Bridge<PlayerView>
-) : AbstractPlayable<PlayerView>(master, media, config, bridge) {
+  bridge: Bridge<StyledPlayerView>
+) : AbstractPlayable<StyledPlayerView>(master, media, config, bridge) {
 
   override var renderer: Any?
     get() = bridge.renderer
     set(value) {
-      require(value is PlayerView?)
+      require(value is StyledPlayerView?)
       bridge.renderer = value
     }
 
   override fun onRendererAttached(playback: Playback, renderer: Any?) {
     val controller = playback.config.controller
     // TODO: replace with custom ForwardingPlayer.
-    /* if (renderer is PlayerView) {
+    /* if (renderer is StyledPlayerView) {
       if (controller is ControlDispatcher) {
         renderer.setControlDispatcher(controller)
         renderer.useController = true
@@ -50,7 +50,7 @@ class PlayerViewPlayable(
       }
     } */
     super.onRendererAttached(playback, renderer)
-    if (renderer is PlayerView && renderer.useController && controller == null) {
+    if (renderer is StyledPlayerView && renderer.useController && controller == null) {
       throw IllegalStateException(
           "To enable `useController`, Playback $playback must have a non-null Playback.Controller."
       )
@@ -59,7 +59,7 @@ class PlayerViewPlayable(
 
   override fun onRendererDetached(playback: Playback, renderer: Any?) {
     // TODO: replace with custom ForwardingPlayer.
-    /* if (renderer is PlayerView) {
+    /* if (renderer is StyledPlayerView) {
       renderer.setControlDispatcher(defaultControlDispatcher)
       renderer.useController = false
     } */

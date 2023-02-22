@@ -18,7 +18,7 @@ package kohii.v1.sample.ui.nested3
 
 import android.view.ViewGroup
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import kohii.v1.exoplayer.Kohii
 import kohii.v1.sample.DemoApp.Companion.assetVideoUri
 import kohii.v1.sample.R.id
@@ -37,7 +37,7 @@ internal class NestedVideoViewHolder(
   ) as AspectRatioFrameLayout
   val playerView = itemView.findViewById(
       id.playerView
-  ) as PlayerView
+  ) as StyledPlayerView
 
   override fun bind(item: Any?) {
     super.bind(item)

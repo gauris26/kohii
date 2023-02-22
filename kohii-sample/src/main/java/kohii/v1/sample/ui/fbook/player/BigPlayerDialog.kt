@@ -23,7 +23,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerControlView
+import com.google.android.exoplayer2.ui.StyledPlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView.ControllerVisibilityListener
 import kohii.v1.core.Playback
 import kohii.v1.core.Playback.Controller
 import kohii.v1.core.Rebinder
@@ -122,9 +124,8 @@ class BigPlayerDialog : InfinityDialogFragment(),
       container.setAspectRatio(ratio)
     }
 
-    binding.playerView.setControllerVisibilityListener {
-      binding.minimizeButton.visibility = it
-    }
+    binding.playerView.setControllerVisibilityListener(
+        ControllerVisibilityListener { visibility -> binding.minimizeButton.visibility = visibility })
 
     val decorView = requireWindow().decorView
     if (requireActivity().isLandscape()) {
@@ -152,7 +153,7 @@ class BigPlayerDialog : InfinityDialogFragment(),
         override fun kohiiCanPause(): Boolean = true
 
         override fun setupRenderer(playback: Playback, renderer: Any?) {
-          if (renderer is PlayerView) {
+          if (renderer is StyledPlayerView) {
             // TODO: replace with custom ForwardingPlayer.
             // renderer.useController = true
             // renderer.setControlDispatcher(kohii.createControlDispatcher(playback))

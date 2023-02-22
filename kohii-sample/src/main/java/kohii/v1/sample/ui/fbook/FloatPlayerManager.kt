@@ -30,7 +30,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.FragmentActivity
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import kohii.v1.exoplayer.Kohii
 import kohii.v1.sample.R
 import java.util.concurrent.atomic.AtomicBoolean
@@ -124,11 +124,11 @@ internal class FloatPlayerManager(val activity: FragmentActivity) {
   }
 
   val container by lazy(NONE) { floatView.findViewById(R.id.playerContainer) as ViewGroup }
-  val playerView by lazy(NONE) { floatView.findViewById(R.id.playerView) as PlayerView }
+  val playerView by lazy(NONE) { floatView.findViewById(R.id.playerView) as StyledPlayerView }
 
   internal val floating = AtomicBoolean(false)
 
-  internal inline fun openFloatPlayer(crossinline callback: (PlayerView) -> Unit) {
+  internal inline fun openFloatPlayer(crossinline callback: (StyledPlayerView) -> Unit) {
     if (floating.compareAndSet(false, true)) {
       activity.runOnUiThread {
         if (!activity.isFinishing) {

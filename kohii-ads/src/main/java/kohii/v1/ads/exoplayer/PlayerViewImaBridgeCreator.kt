@@ -22,7 +22,7 @@ import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ext.ima.ImaAdsLoader
 import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
 import com.google.android.exoplayer2.source.MediaSource
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import kohii.v1.ads.AdMedia
 import kohii.v1.ads.Manilo
 import kohii.v1.core.Bridge
@@ -49,9 +49,9 @@ class PlayerViewImaBridgeCreator(
   private val playerPool: PlayerPool<Player>,
   private val mediaSourceFactory: DefaultMediaSourceFactory,
   private val imaAdsLoaderBuilder: ImaAdsLoader.Builder? = null
-) : BridgeCreator<PlayerView> {
+) : BridgeCreator<StyledPlayerView> {
 
-  override fun createBridge(context: Context, media: Media): Bridge<PlayerView> {
+  override fun createBridge(context: Context, media: Media): Bridge<StyledPlayerView> {
     val adTagUri = (media as? AdMedia)?.adTagUri
     return if (adTagUri != null) {
       val adsLoaderBuilder = imaAdsLoaderBuilder ?: ImaAdsLoader.Builder(context)

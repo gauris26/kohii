@@ -23,7 +23,7 @@ import android.widget.TextView
 import androidx.core.view.get
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import kohii.v1.exoplayer.Kohii
 import kohii.v1.media.MediaItem
 import kohii.v1.sample.R
@@ -49,20 +49,20 @@ class VideoViewHolder(
   var itemTag: String? = null
 
   override fun bind(item: Any?) {
-    if (playerContainer[0] is PlayerView) playerContainer.removeViewAt(0)
+    if (playerContainer[0] is StyledPlayerView) playerContainer.removeViewAt(0)
     if (item is Item) {
       val drmItem = item.drmScheme?.let { DrmItem(item) }
       // Dynamically create the PlayerView instance.
       val playerView = (drmItem?.let {
         // Encrypted video must be played on SurfaceView.
         playerContainer.inflateView(R.layout.playerview_surface)
-      } ?: playerContainer.inflateView(R.layout.playerview_texture)) as PlayerView
+      } ?: playerContainer.inflateView(R.layout.playerview_texture)) as StyledPlayerView
       playerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT
       playerContainer.addView(playerView, 0)
 
       val mediaItem =
         MediaItem(Uri.parse(item.uri), item.extension, drmItem)
-      itemTag = "${javaClass.canonicalName}::${item.uri}::$adapterPosition"
+      itemTag = "${javaClass.canonicalName}::${item.uri}::$absoluteAdapterPosition"
       mediaName.text = item.name
 
       kohii.setUp(mediaItem) {
